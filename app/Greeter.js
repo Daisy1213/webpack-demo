@@ -1,6 +1,8 @@
+import config from './config.json';
+
 function returnGreeter() {
     var greet = document.createElement('div');
-    greet.textContent = 'Hi, welcome use webpck!';
+    greet.textContent = config.greetText;
     return greet;
 }
 
