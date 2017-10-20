@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
     devtool: "source-map",
@@ -45,5 +46,8 @@ module.exports = {
             template: __dirname + '/app/index.html'  //以该html为模板打包自动生成index.html文件
         }),
         new webpack.HotModuleReplacementPlugin(), //热加载插件
+        new webpack.optimize.OccurrenceOrderPlugin(), //产品阶段对模块分配id
+        new webpack.optimize.UglifyJsPlugin(), //产品阶段为了压缩js代码
+        new ExtractTextPlugin('style.css') //分离css和js文件
     ]
 };
