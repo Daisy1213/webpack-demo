@@ -81,7 +81,7 @@ document.querySelector('#root').appendChild(Object(__WEBPACK_IMPORTED_MODULE_0__
 "use strict";
 function returnGreeter() {
     var greet = document.createElement('div');
-    greet.textContent = 'Hi welcome use webpck!';
+    greet.textContent = 'Hi, welcome use webpck!';
     return greet;
 }
 
