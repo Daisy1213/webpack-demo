@@ -17,11 +17,6 @@ module.exports = {
                 test: /(\.jsx|\.js)$/, //符合该正则的文件都需要处理
                 use: {
                     loader: "babel-loader",
-                    options: {
-                        presets: [
-                            "es2015", "react"
-                        ]
-                    }
                 },
                 exclude: /node_modules/  //屏蔽不需要处理的文件，node_modules文件夹中的不需要处理
             }
