@@ -30,8 +30,8 @@ module.exports = {
                 use: [{
                     loader: "style-loader" //作用: 把css嵌入到js代码中
                     // 因为在js代码中引入了css，所以webpack会先解析css代码（css-loader）,
-                    // 然后把解析后的代码嵌入到js中（style-loader）,
-                    // 如果想把css文件单独打成一个文件使用extract-text-webpack-plugin
+                    // 然后把解析后的代码嵌入到js中（style-loader）, Adds CSS to the DOM by injecting a <style> tag
+                    // 如果想把css文件单独打成一个文件使用extract-text-webpack-plugin插件
                 },{
                     loader: "css-loader", //支持使用@import url
                     options: {
@@ -40,6 +40,16 @@ module.exports = {
                 },{
                     loader: "postcss-loader"
                 }]
+            },
+            {
+                test: /\.(png|jpg|gif)$/,
+                use: {
+                    loader: "url-loader",
+                    options: {
+                        limit: 8192,
+                        name: 'images/[name]-[hash].[ext]'
+                    }
+                }
             }
         ]
     },
