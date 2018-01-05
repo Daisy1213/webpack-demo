@@ -10,9 +10,10 @@ module.exports = {
     },
 
     devServer: {
-        contentBase: "./public",
+        contentBase: "./dist",
         inline: true, // 实时刷新,
-        hot: true //热加载
+        hot: true,//热加载
+        port: 3000
     },
 
     module: {
@@ -27,7 +28,10 @@ module.exports = {
             {
                 test: /\.css$/,
                 use: [{
-                    loader: "style-loader"
+                    loader: "style-loader" //作用: 把css嵌入到js代码中
+                    // 因为在js代码中引入了css，所以webpack会先解析css代码（css-loader）,
+                    // 然后把解析后的代码嵌入到js中（style-loader）,
+                    // 如果想把css文件单独打成一个文件使用extract-text-webpack-plugin
                 },{
                     loader: "css-loader", //支持使用@import url
                     options: {

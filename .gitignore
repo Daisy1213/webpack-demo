@@ -84,5 +84,6 @@ crashlytics-build.properties
 fabric.properties
 
 .idea
+dist
 
 node_modules/
