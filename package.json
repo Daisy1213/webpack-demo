@@ -7,7 +7,7 @@
     "start": "webpack",
     "server": "webpack-dev-server --open",
     "build-windows": "SET NODE_ENV=development & webpack --config ./webpack.production.config.js --progress --profile --colors",
-    "build": "NODE_ENV=development & webpack --config ./webpack.production.config.js --progress --profile --colors"
+    "build": "NODE_ENV=production & webpack --config ./webpack.production.config.js --progress --profile --colors"
   },
   "author": "",
   "license": "ISC",

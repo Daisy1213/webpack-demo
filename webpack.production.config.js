@@ -11,7 +11,7 @@ module.exports = {
     },
 
     devServer: {
-        contentBase: "./public",
+        contentBase: "./dist",
         inline: true, // 实时刷新,
         hot: true //热加载
     },

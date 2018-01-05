@@ -28,10 +28,10 @@ module.exports = {
             {
                 test: /\.css$/,
                 use: [{
-                    loader: "style-loader" //作用: 把css嵌入到js代码中
+                    loader: "style-loader" //作用: 把css通过style标签注入到dom中，写入head中
                     // 因为在js代码中引入了css，所以webpack会先解析css代码（css-loader）,
-                    // 然后把解析后的代码嵌入到js中（style-loader）, Adds CSS to the DOM by injecting a <style> tag
-                    // 如果想把css文件单独打成一个文件使用extract-text-webpack-plugin插件
+                    // 然后把注入css到dom中 Adds CSS to the DOM by injecting a <style> tag
+                    // 如果想把css文件单独打成一个文件使用extract-text-webpack-plugin
                 },{
                     loader: "css-loader", //支持使用@import url
                     options: {
