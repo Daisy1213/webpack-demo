@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
     devtool: "source-map",
@@ -11,7 +12,7 @@ module.exports = {
     },
 
     devServer: {
-        contentBase: "./dist",
+        contentBase: "./public",
         inline: true, // 实时刷新,
         hot: true //热加载
     },
@@ -27,16 +28,27 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                use: [{
-                    loader: "style-loader"
-                },{
-                    loader: "css-loader", //支持使用@import url
+                use: ExtractTextPlugin.extract({
+                    fallback: "style-loader",
+                    use: [{
+                        loader: "css-loader", //支持使用@import url
+                        options: {
+                            modules: true
+                        }  //使用css modules 解决相同类名造成的冲突问题
+                    }, {
+                        loader: "postcss-loader"
+                    }]
+                })
+            },
+            {
+                test: /\.(png|jpg|gif)$/,
+                use: {
+                    loader: "url-loader",
                     options: {
-                        modules: true
-                    }  //使用css modules 解决相同类名造成的冲突问题
-                },{
-                    loader: "postcss-loader"
-                }]
+                        limit: 8192,
+                        name: 'images/[name]-[hash].[ext]'
+                    }
+                }
             }
         ]
     },
@@ -48,6 +60,7 @@ module.exports = {
         new webpack.HotModuleReplacementPlugin(), //热加载插件
         new webpack.optimize.OccurrenceOrderPlugin(), //产品阶段对模块分配id
         new webpack.optimize.UglifyJsPlugin(), //产品阶段为了压缩js代码
-        new ExtractTextPlugin('style.css') //分离css和js文件
+        new ExtractTextPlugin('bundle-[hash].css'), //分离css和js文件
+        new CleanWebpackPlugin(['dist'])
     ]
 };

@@ -6,6 +6,7 @@ import style from './greeter.css';
 
 class Greeter extends React.Component {
     render() {
+        console.log('hello');
         return (
             <div className={style.root}>
                 {config.greetText}
